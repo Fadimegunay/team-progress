@@ -18,4 +18,13 @@ Route::middleware(['userlogincheck'])->group(function () {
 Route::middleware(['usercheck'])->group(function () {
     Route::get('/logout', 'LoginController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::prefix('teams')->name('teams.')->group(function () {
+		Route::get('', 'TeamController@index')->name('index');
+		Route::get('create', 'TeamController@create')->name('create');
+		Route::post('', 'TeamController@store')->name('store');
+		Route::get('/edit/{team}', 'TeamController@edit')->name('edit');
+		Route::put('{team}', 'TeamController@update')->name('update');
+		Route::delete('{team}', 'TeamController@destroy')->name('destroy');
+	});
 });

@@ -91,11 +91,6 @@
                                 </li>
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="#">
-                                        <i class="icon-lock"></i> Kilit
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="{{ route('logout') }}">
                                         <i class="icon-logout"></i> Çıkış </a>
                                 </li>
@@ -154,17 +149,17 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
-                                    <span class="title">Baslik</span>
+                                    <span class="title">Takımlar</span>
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
-                                        <a href="" class="nav-link ">
+                                        <a href="{{ route('teams.index') }}" class="nav-link ">
                                             <span class="title">Liste</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="" class="nav-link ">
+                                        <a href="{{ route('teams.create') }}" class="nav-link ">
                                             <span class="title">Oluştur</span>
                                         </a>
                                     </li>
