@@ -149,6 +149,25 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
+                                    <span class="title">Kullanıcılar</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item">
+                                        <a href="{{ route('users.index') }}" class="nav-link ">
+                                            <span class="title">Liste</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('users.create') }}" class="nav-link ">
+                                            <span class="title">Oluştur</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
                                     <span class="title">Takımlar</span>
                                     <span class="arrow"></span>
                                 </a>

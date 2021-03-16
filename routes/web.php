@@ -27,4 +27,13 @@ Route::middleware(['usercheck'])->group(function () {
 		Route::put('{team}', 'TeamController@update')->name('update');
 		Route::delete('{team}', 'TeamController@destroy')->name('destroy');
 	});
+
+    Route::prefix('users')->name('users.')->group(function () {
+		Route::get('', 'UserController@index')->name('index');
+		Route::get('create', 'UserController@create')->name('create');
+		Route::post('', 'UserController@store')->name('store');
+		Route::get('/edit/{user}', 'UserController@edit')->name('edit');
+		Route::put('{user}', 'UserController@update')->name('update');
+		Route::delete('{user}', 'UserController@destroy')->name('destroy');
+	});
 });
