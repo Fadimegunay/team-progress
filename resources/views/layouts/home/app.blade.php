@@ -185,6 +185,25 @@
                                 </ul>
                             </li>
                             
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Roller</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item">
+                                        <a href="{{ route('roles.index') }}" class="nav-link ">
+                                            <span class="title">Liste</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('roles.create') }}" class="nav-link ">
+                                            <span class="title">Oluştur</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>

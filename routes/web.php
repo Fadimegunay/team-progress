@@ -36,4 +36,20 @@ Route::middleware(['usercheck'])->group(function () {
 		Route::put('{user}', 'UserController@update')->name('update');
 		Route::delete('{user}', 'UserController@destroy')->name('destroy');
 	});
+
+    Route::prefix('roles')->name('roles.')->group(function () {
+		Route::get('', 'RoleController@index')->name('index');
+		Route::get('create', 'RoleController@create')->name('create');
+		Route::post('', 'RoleController@store')->name('store');
+		Route::get('/edit/{role}', 'RoleController@edit')->name('edit');
+		Route::put('{role}', 'RoleController@update')->name('update');
+		Route::delete('{role}', 'RoleController@destroy')->name('destroy');
+	});
+
+	Route::prefix('role-permissions')->group(function () {
+		Route::get('index/{id}', 'RolePermissionController@index')->name('role-permissions.index');
+		Route::get('new/{id}', 'RolePermissionController@new')->name('role-permissions.new');
+		Route::post('store', 'RolePermissionController@store')->name('role-permissions.store');
+		Route::get('delete/{role_permission}', 'RolePermissionController@delete')->name('role-permissions.delete');
+	});
 });
