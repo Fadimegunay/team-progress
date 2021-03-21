@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Team;
 
@@ -47,5 +48,22 @@ class TeamController extends Controller
         $team->save();
 
         return redirect()->route('teams.index')->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
+    }
+
+    public function delete(Team $team){
+        if (Gate::denies('access', 'team-delete')) {
+            return redirect()->route('home');
+        }
+        $result = false;
+        try {
+            DB::beginTransaction();
+            $team->delete();
+            DB::commit();
+            $result = true;
+        } catch (Exception $exception) {
+            DB::rollBack();
+            $result = false;
+        }
+        return response()->json($result)->header('Content-Type', 'application/json');
     }
 }

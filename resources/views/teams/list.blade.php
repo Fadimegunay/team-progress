@@ -41,6 +41,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <meta name="csrf-token" content="{{ csrf_token() }}">
                                         @foreach($teams as $team)
                                         <tr>
                                             <td>{{$team->name}}</td>
@@ -49,7 +50,7 @@
                                                 <a class="btn btn-primary btn-xs" href="{{ route('teams.edit',['team' => $team->id]) }}"><i class="fa fa-pencil"></i></a>
                                                 @endcan
                                                 @can('access', 'team-delete')
-                                                <a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash-o"></i></a>
+                                                <a class="btn btn-danger btn-xs team-delete" data-id="{{ $team->id }}" href="#"><i class="fa fa-trash-o"></i></a>
                                                 @endcan
                                             </td>
                                         </tr>
@@ -70,4 +71,7 @@
     </div>
 </div>
 </div>
+@endsection
+@section('scripts')
+<script type='text/javascript' src="{{ asset('js/delete.js') }}"></script>
 @endsection

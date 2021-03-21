@@ -52,4 +52,16 @@ class RolePermissionController extends Controller
 	    }
 	    return redirect()->route('role-permissions.index', ['id' => $role_id]);
     }
+
+    public function delete(RolePermission $role_permission)
+    {
+        if (Gate::denies('access', 'role_permission-delete')) {
+            return redirect()->route('home');
+        }
+        $role = RolePermission::select('role_id')->where('id',$role_permission->id)->first();
+        $role_permission->delete();
+        
+        return redirect()->route('role-permissions.index', ['id' => $role->role_id])->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
+
+    }
 }

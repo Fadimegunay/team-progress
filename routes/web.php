@@ -25,7 +25,7 @@ Route::middleware(['usercheck'])->group(function () {
 		Route::post('', 'TeamController@store')->name('store');
 		Route::get('/edit/{team}', 'TeamController@edit')->name('edit');
 		Route::put('{team}', 'TeamController@update')->name('update');
-		Route::delete('{team}', 'TeamController@destroy')->name('destroy');
+		Route::delete('{team}', 'TeamController@delete')->name('delete');
 	});
 
     Route::prefix('users')->name('users.')->group(function () {
@@ -34,7 +34,7 @@ Route::middleware(['usercheck'])->group(function () {
 		Route::post('', 'UserController@store')->name('store');
 		Route::get('/edit/{user}', 'UserController@edit')->name('edit');
 		Route::put('{user}', 'UserController@update')->name('update');
-		Route::delete('{user}', 'UserController@destroy')->name('destroy');
+		Route::delete('{user}', 'UserController@delete')->name('delete');
 	});
 
     Route::prefix('roles')->name('roles.')->group(function () {
@@ -43,7 +43,7 @@ Route::middleware(['usercheck'])->group(function () {
 		Route::post('', 'RoleController@store')->name('store');
 		Route::get('/edit/{role}', 'RoleController@edit')->name('edit');
 		Route::put('{role}', 'RoleController@update')->name('update');
-		Route::delete('{role}', 'RoleController@destroy')->name('destroy');
+		Route::delete('{role}', 'RoleController@delete')->name('delete');
 	});
 
 	Route::prefix('role-permissions')->group(function () {

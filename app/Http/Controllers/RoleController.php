@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -46,5 +47,22 @@ class RoleController extends Controller
         $role->save();
 
         return redirect()->route('roles.index')->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
+    }
+
+    public function delete(Role $role){
+        if (Gate::denies('access', 'role-delete')) {
+            return redirect()->route('home');
+        }
+        $result = false;
+        try {
+            DB::beginTransaction();
+            $role->delete();
+            DB::commit();
+            $result = true;
+        } catch (Exception $exception) {
+            DB::rollBack();
+            $result = false;
+        }
+        return response()->json($result)->header('Content-Type', 'application/json');
     }
 }

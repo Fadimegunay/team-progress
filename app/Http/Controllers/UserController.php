@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 use App\Models\Team;
@@ -17,7 +19,12 @@ class UserController extends Controller
             return redirect()->route('home');
         }
         $data = [];
-        $data['users'] = User::where('is_super_admin',false)->paginate();
+        if((bool) Auth::user()->is_super_admin)
+            $data['users'] = User::where('is_active', true)->paginate();
+        else
+            $data['users'] = User::where('team_id',  Auth::user()->team_id)
+                                    ->where('is_active', true)
+                                    ->paginate();
         return view('users.list',$data);
     }
 
@@ -80,5 +87,23 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index')->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
+    }
+
+    public function delete(User $user) {
+        if (Gate::denies('access', 'users-delete')) {
+            return redirect()->route('home');
+        }
+        $result = false;
+        try {
+            DB::beginTransaction();
+            $user->is_active = false;
+            $user->save();
+            DB::commit();
+            $result = true;
+        } catch (Exception $exception) {
+            DB::rollBack();
+            $result = false;
+        }
+        return response()->json($result)->header('Content-Type', 'application/json');        
     }
 }

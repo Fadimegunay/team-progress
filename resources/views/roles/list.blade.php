@@ -41,6 +41,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
                                         @foreach($roles as $role)
                                         <tr>
                                             <td>{{$role->name}}</td>
@@ -49,7 +50,7 @@
                                                 <a class="btn btn-primary btn-xs" href="{{ route('roles.edit',['role' => $role->id]) }}"><i class="fa fa-pencil"></i></a>
                                                 @endcan
                                                 @can('access', 'role-delete')
-                                                <a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash-o"></i></a>
+                                                <a class="btn btn-danger btn-xs role-delete" data-id="{{ $role->id }}" href="#"><i class="fa fa-trash-o"></i></a>
                                                 @endcan
                                                 @can('access', 'role_permission-list')
                                                 <a class="btn btn-warning btn-xs"  href="{{ route('role-permissions.index',['id'=>$role->id]) }}" >İzinler</i></a>
@@ -73,4 +74,7 @@
     </div>
 </div>
 </div>
+@endsection
+@section('scripts')
+<script type='text/javascript' src="{{ asset('js/delete.js') }}"></script>
 @endsection
