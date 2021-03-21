@@ -73,7 +73,24 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <div class="col-lg-12"> 
+                                    <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        <label style="color:rgb(180, 180, 180);">Roller</label>
+                                        <select class="form-control" required name="roles[]" multiple="multiple">
+                                            @foreach($roles as $role)
+                                            @php $roleCheck = ""; @endphp
+                                            @foreach($user->roles  as $userRole)
+                                                @if($role->role == $userRole->role->role)
+                                                    @php $roleCheck = "selected"; @endphp
+                                                @endif
+                                            @endforeach
+                                            <option  {{ $roleCheck }}  value="{{ $role->id }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-lg-12 p-t-20"> 
                                 <button type="submit" class="btn btn-primary">Güncelle</button>
                             </div>

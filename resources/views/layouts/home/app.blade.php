@@ -146,6 +146,7 @@
                                     <span class="title">Anasayfa</span>
                                 </a>
                             </li>
+                            @can('access', ['users-list','users-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -153,18 +154,24 @@
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
+                                    @can('access', 'users-list')
                                     <li class="nav-item">
                                         <a href="{{ route('users.index') }}" class="nav-link ">
                                             <span class="title">Liste</span>
                                         </a>
                                     </li>
+                                    @endcan
+                                    @can('access', 'users-new')
                                     <li class="nav-item">
                                         <a href="{{ route('users.create') }}" class="nav-link ">
                                             <span class="title">Oluştur</span>
                                         </a>
                                     </li>
+                                    @endcan
                                 </ul>
                             </li>
+                            @endcan
+                            @can('access' ,['team-list','team-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -172,19 +179,24 @@
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
+                                    @can('access', 'team-list')
                                     <li class="nav-item">
                                         <a href="{{ route('teams.index') }}" class="nav-link ">
                                             <span class="title">Liste</span>
                                         </a>
                                     </li>
+                                    @endcan
+                                    @can('access', 'team-new')
                                     <li class="nav-item">
                                         <a href="{{ route('teams.create') }}" class="nav-link ">
                                             <span class="title">Oluştur</span>
                                         </a>
                                     </li>
+                                    @endcan
                                 </ul>
                             </li>
-                            
+                            @endcan
+                            @can('access' ,['role-list','role-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">group</i>
@@ -192,18 +204,23 @@
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
+                                    @can('access', 'role-list')
                                     <li class="nav-item">
                                         <a href="{{ route('roles.index') }}" class="nav-link ">
                                             <span class="title">Liste</span>
                                         </a>
                                     </li>
+                                    @endcan
+                                    @can('access', 'role-new')
                                     <li class="nav-item">
                                         <a href="{{ route('roles.create') }}" class="nav-link ">
                                             <span class="title">Oluştur</span>
                                         </a>
                                     </li>
+                                    @endcan
                                 </ul>
                             </li>
+                            @endcan
                         </ul>
                     </div>
                 </div>

@@ -28,7 +28,9 @@
                             </div>
                             {{ session()->forget('message') }}
                         @endif
+                        @can('access', 'team-new')
                         <a class="btn btn-primary btn-outline btn-input" href="{{ route('teams.create') }}">Yeni Oluştur</a>
+                        @endcan
                         <div style="margin-top: 15px;">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered mb-0" >
@@ -43,8 +45,12 @@
                                         <tr>
                                             <td>{{$team->name}}</td>
                                             <td>
+                                                @can('access', 'team-edit')
                                                 <a class="btn btn-primary btn-xs" href="{{ route('teams.edit',['team' => $team->id]) }}"><i class="fa fa-pencil"></i></a>
+                                                @endcan
+                                                @can('access', 'team-delete')
                                                 <a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash-o"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                         @endforeach

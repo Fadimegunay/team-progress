@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Role;
 use App\Models\Permission;
@@ -12,6 +13,9 @@ class RolePermissionController extends Controller
 {
     public function index($role_id)
     {
+        if (Gate::denies('access', 'role_permission-list')) {
+            return redirect()->route('home');
+        }
         $datas = [];
         $role = Role::where('id',$role_id)->first();
         $permissions = $role->permissions()->paginate();
@@ -22,6 +26,9 @@ class RolePermissionController extends Controller
 
     public function new($role_id)
     {
+        if (Gate::denies('access', 'role_permission-new')) {
+            return redirect()->route('home');
+        }
         $datas = [];
         $role_value = Role::select('id','name')
                       ->where('id', $role_id)->first();

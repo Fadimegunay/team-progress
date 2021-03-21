@@ -29,7 +29,9 @@
                             </div>
                             {{ session()->forget('message') }}
                         @endif
+                        @can('access', 'role_permission-new')
                         <a class="btn btn-primary btn-outline btn-input" href="{{ route('role-permissions.new', ['id'=> $role->id]) }}">Yeni Oluştur</a>
+                        @endcan
                         <div style="margin-top: 15px;">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered mb-0" >
@@ -46,7 +48,9 @@
                                             <td>{{ $role->name }}</td>
                                             <td>{{ $item->name}}</td>
                                             <td>
+                                                @can('access', 'role_permission-delete')
                                                 <a class="btn btn-danger btn-xs" href="{{ route('role-permissions.delete', ['role_permission'=> $item->pivot->id] ) }}"><i class="fa fa-trash-o"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                         @endforeach

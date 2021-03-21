@@ -4,10 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use App\Http\Controllers\Settings\RoleController;
-use App\Http\Controllers\Settings\UserController;
-use App\Http\Controllers\Settings\TeamController;
-use App\Http\Controllers\Settings\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolePermissionController;
 
 use App\Libraries\PagePermissions;
 
@@ -36,5 +37,8 @@ class PermissionTableSeeder extends Seeder
 		$pagePermissions->register('team-new', TeamController::class, 'new', 'Takım Ekleme');
 		$pagePermissions->register('team-edit', TeamController::class, 'edit', 'Takım Güncelleme');
 		$pagePermissions->register('team-delete', TeamController::class, 'delete', 'Takım Silme');
+
+        $pagePermissions->register('role_permission-list', RolePermissionController::class, 'list', 'Rol İzin Listeleme');
+		$pagePermissions->register('role_permission-new', RolePermissionController::class, 'new', 'Rol İzin Ekleme');
     }
 }

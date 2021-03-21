@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 use App\Models\Team;
 
 class TeamController extends Controller
 {
     public function index(){
+        if (Gate::denies('access', 'team-list')) {
+            return redirect()->route('home');
+        }
         $data = [];
         $data['teams'] = Team::paginate();
         return view('teams.list',$data);
     }
 
     public function create() {
+        if (Gate::denies('access', 'team-new')) {
+            return redirect()->route('home');
+        }
         return view('teams.new');
     }
 
@@ -26,6 +34,9 @@ class TeamController extends Controller
     }
 
     public function edit(Team $team) {
+        if (Gate::denies('access', 'team-edit')) {
+            return redirect()->route('home');
+        }
         $data = [];
         $data['team'] = $team;
         return view('teams.edit',$data);

@@ -28,7 +28,9 @@
                             </div>
                             {{ session()->forget('message') }}
                         @endif
+                        @can('access', 'users-new')
                         <a class="btn btn-primary btn-outline btn-input" href="{{ route('users.create') }}">Yeni Oluştur</a>
+                        @endcan
                         <div style="margin-top: 15px;">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered mb-0" >
@@ -45,8 +47,12 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>
+                                                @can('access', 'users-edit')
                                                 <a class="btn btn-primary btn-xs" href="{{ route('users.edit',['user' => $user->id]) }}"><i class="fa fa-pencil"></i></a>
+                                                @endcan
+                                                @can('access', 'users-delete')
                                                 <a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash-o"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                         @endforeach

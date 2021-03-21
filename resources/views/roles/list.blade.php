@@ -28,7 +28,9 @@
                             </div>
                             {{ session()->forget('message') }}
                         @endif
+                        @can('access', 'role-new')
                         <a class="btn btn-primary btn-outline btn-input" href="{{ route('roles.create') }}">Yeni Oluştur</a>
+                        @endcan
                         <div style="margin-top: 15px;">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered mb-0" >
@@ -43,9 +45,15 @@
                                         <tr>
                                             <td>{{$role->name}}</td>
                                             <td>
+                                                @can('access', 'role-edit')
                                                 <a class="btn btn-primary btn-xs" href="{{ route('roles.edit',['role' => $role->id]) }}"><i class="fa fa-pencil"></i></a>
+                                                @endcan
+                                                @can('access', 'role-delete')
                                                 <a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash-o"></i></a>
+                                                @endcan
+                                                @can('access', 'role_permission-list')
                                                 <a class="btn btn-warning btn-xs"  href="{{ route('role-permissions.index',['id'=>$role->id]) }}" >İzinler</i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                         @endforeach
