@@ -31,31 +31,35 @@
                             <form action="{{ route('tasks.update', ['task' => $task->id]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                <div class="form-group">
-                                    <div class="col-lg-12"> 
-                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <label for="simpleFormEmail" style="color:rgb(180, 180, 180);">Takım</label>
-                                            <select class="form-control" name="team" id="team" disabled>
-                                                @foreach($teams as $team)
-                                                @php $check = ""; @endphp
-                                                @if($task->team_id == $team->id)
-                                                @php $check = "selected"; @endphp
-                                                @endif
-                                                <option {{$check}} value="{{$team->id}}">{{$team->name}} </option>
-                                                
-                                                @endforeach
-                                            </select>
+                                @if($authUser->is_super_admin == 1)
+                                    <div class="form-group">
+                                        <div class="col-lg-12"> 
+                                            <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                <label for="simpleFormEmail" style="color:rgb(180, 180, 180);">Takım</label>
+                                                <select class="form-control" name="team" id="team" disabled>
+                                                    @foreach($teams as $team)
+                                                    @php $check = ""; @endphp
+                                                    @if($task->team_id == $team->id)
+                                                    @php $check = "selected"; @endphp
+                                                    @endif
+                                                    <option {{$check}} value="{{$team->id}}">{{$team->name}} </option>
+                                                    
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <input type="hidden" name="team" id=team value="{{$authUser->team_id}}" />
+                                @endif
                                 <div class="form-group">
                                     <div class="col-lg-12"> 
                                         <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                             <label for="simpleFormEmail" style="color:rgb(180, 180, 180);">Kullanıcılar</label>
                                             <select class="  form-control " multiple id="users" name="users[]">
                                                 @foreach($users as $user)
+                                                    @php $check = ""; @endphp
                                                     @foreach($task->users as $item)
-                                                        @php $check = ""; @endphp
                                                         @if($user->id == $item->id)
                                                             @php $check = "selected"; @endphp
                                                         @endif

@@ -30,19 +30,23 @@
                             @endif
                             <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <div class="col-lg-12"> 
-                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <label for="simpleFormEmail" style="color:rgb(180, 180, 180);">Takım</label>
-                                            <select class="form-control" name="team" id="team" required>
-                                                <option></option>
-                                                @foreach($teams as $team)
-                                                <option value="{{$team->id}}">{{$team->name}} </option>
-                                                @endforeach
-                                            </select>
+                                @if($authUser->is_super_admin == 1)
+                                    <div class="form-group">
+                                        <div class="col-lg-12"> 
+                                            <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                <label for="simpleFormEmail" style="color:rgb(180, 180, 180);">Takım</label>
+                                                <select class="form-control" name="team" id="team" required>
+                                                    <option></option>
+                                                    @foreach($teams as $team)
+                                                    <option value="{{$team->id}}">{{$team->name}} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <input type="hidden" name="team" id=team value="{{$authUser->team_id}}" />
+                                @endif
                                 <div class="form-group">
                                     <div class="col-lg-12"> 
                                         <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">

@@ -13,12 +13,12 @@ function teamUsers() {
                     userSelect.append(option);
                 });
                // userSelect.selectpicker('refresh');
-                console.log(userSelect);
             }
         });
     }
 }
 $(document).ready(function () {
+    teamUsers();
     $("#team").on('change', function () {
         teamUsers();
     });
