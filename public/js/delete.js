@@ -70,4 +70,30 @@ $(document).ready(function () {
             });
         }
     });
+
+    $('.task-delete').click(function () {
+        var element = $(this);
+        var result = confirm("Görevi silmek istediğinize emin misiniz?");
+        if (result) {
+            $.ajax({
+                
+                  url: '/tasks/' + element.data('id'),
+                  type: 'DELETE',
+                  data: {
+                     _token : $('meta[name="csrf-token"]').attr('content')
+                  },
+                  dataType: "text",
+                success: function (response) {
+                    if(response) {
+                        console.log(response);
+                        alert("Silme işlemi başarılı.");
+                        location.replace('/tasks');
+                    } else {
+                        alert("Silme işlemi başarısız daha sonra tekrar deneyiniz!");
+                    }
+                }
+            });
+        }
+    });
+
 });

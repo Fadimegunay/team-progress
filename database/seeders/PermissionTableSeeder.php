@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\TaskController;
 
 use App\Libraries\PagePermissions;
 
@@ -40,5 +41,10 @@ class PermissionTableSeeder extends Seeder
 
         $pagePermissions->register('role_permission-list', RolePermissionController::class, 'list', 'Rol İzin Listeleme');
 		$pagePermissions->register('role_permission-new', RolePermissionController::class, 'new', 'Rol İzin Ekleme');
+
+        $pagePermissions->register('task-list', TaskController::class, 'list', 'Görev Listeleme');
+		$pagePermissions->register('task-new', TaskController::class, 'new', 'Görev Ekleme');
+		$pagePermissions->register('task-edit', TaskController::class, 'edit', 'Görev Güncelleme');
+		$pagePermissions->register('task-delete', TaskController::class, 'delete', 'Görev Silme');
     }
 }

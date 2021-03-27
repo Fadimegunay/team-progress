@@ -52,4 +52,18 @@ Route::middleware(['usercheck'])->group(function () {
 		Route::post('store', 'RolePermissionController@store')->name('role-permissions.store');
 		Route::get('delete/{role_permission}', 'RolePermissionController@delete')->name('role-permissions.delete');
 	});
+
+	Route::prefix('tasks')->name('tasks.')->group(function () {
+		Route::get('', 'TaskController@index')->name('index');
+		Route::get('create', 'TaskController@create')->name('create');
+		Route::post('', 'TaskController@store')->name('store');
+		Route::get('/edit/{task}', 'TaskController@edit')->name('edit');
+		Route::put('{task}', 'TaskController@update')->name('update');
+		Route::delete('{task}', 'TaskController@delete')->name('delete');
+	});
+
+	Route::prefix('ajax')->group(function () {
+			Route::get('/team/user', 'AjaxController@teamUser');
+	});
+
 });

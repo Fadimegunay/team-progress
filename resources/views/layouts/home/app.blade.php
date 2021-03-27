@@ -196,6 +196,31 @@
                                 </ul>
                             </li>
                             @endcan
+                            @can('access' ,['task-list','task-new'])
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i class="material-icons">group</i>
+                                    <span class="title">Görevler</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    @can('access', 'task-list')
+                                    <li class="nav-item">
+                                        <a href="{{ route('tasks.index') }}" class="nav-link ">
+                                            <span class="title">Liste</span>
+                                        </a>
+                                    </li>
+                                    @endcan
+                                    @can('access', 'task-new')
+                                    <li class="nav-item">
+                                        <a href="{{ route('tasks.create') }}" class="nav-link ">
+                                            <span class="title">Oluştur</span>
+                                        </a>
+                                    </li>
+                                    @endcan
+                                </ul>
+                            </li>
+                            @endcan
                             @can('access' ,['role-list','role-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
