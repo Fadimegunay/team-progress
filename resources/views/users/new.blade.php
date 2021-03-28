@@ -28,7 +28,7 @@
                                 </div>
                                 {{ session()->forget('message') }}
                             @endif
-                            <form action="{{ route('users.store') }}" method="POST">
+                            <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <div class="col-lg-12"> 
@@ -75,6 +75,18 @@
                                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                                        <label class="control-label" style="color:rgb(180, 180, 180);">Profil Yükle</label>
+                                        <div class="dropzone">
+                                            <div class="dz-message" style="margin: 25px;">
+                                                <div class="col-md-12" style="padding: 18px 5px 0 0;">
+                                                    <input type="file" class="upload" name="file" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

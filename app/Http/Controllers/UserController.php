@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 use App\Models\User;
 use App\Models\Team;
@@ -46,6 +47,20 @@ class UserController extends Controller
         $user->password = md5($request->input('password'));
         $user->is_super_admin = false;
         $user->is_active = true;
+        $control = false;
+        if ($request->file) {
+            if(!File::isDirectory('storage/uploads/users')){
+                File::makeDirectory('storage/uploads/users', 0777, true, true);
+            }
+            $file = $request->file('file');
+            $file_ = $this->fileExtension($file->getClientOriginalName());
+            if($file_){
+                $user->profile_photo = $this->generateName($file->getClientOriginalName());
+                $control = true;
+            }
+
+        }
+        
         if($user->save() && $request->exists('roles')){
             foreach($request->input('roles') as $role){
                 $userRole = new UserRole();
@@ -55,6 +70,9 @@ class UserController extends Controller
             }
         }
 
+        if ($control) {
+            $file->storeAs('uploads/users', $user->profile_photo);
+        }
         return redirect()->route('users.index')->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
     }
 
@@ -74,8 +92,24 @@ class UserController extends Controller
         $user->name = $request->input('name');
         if( $request->input('password'))
             $user->password = md5($request->input('password'));
-        $user->save();
+        
+        $control = false;
+        if ($request->file) {
+            if(!File::isDirectory('storage/uploads/users')){
+                File::makeDirectory('storage/uploads/users', 0777, true, true);
+            }
+            $file = $request->file('file');
+            $file_ = $this->fileExtension($file->getClientOriginalName());
+            if($file_){
+                $user->profile_photo = $this->generateName($file->getClientOriginalName());
+                $control = true;
+            }
 
+        }
+        $user->save();
+        if ($control) {
+            $file->storeAs('uploads/users', $user->profile_photo);
+        }
         if($request->exists('roles')){
             $user->roles()->delete();
             foreach($request->input('roles') as $role){
@@ -105,5 +139,18 @@ class UserController extends Controller
             $result = false;
         }
         return response()->json($result)->header('Content-Type', 'application/json');        
+    }
+
+    public function fileExtension($file){
+        $extension = pathinfo($file,PATHINFO_EXTENSION);
+        if($extension == "jpeg" || $extension == "jpg" || $extension == "png")
+            return true;
+        else
+            return false;
+    }
+    
+    public function generateName($file){
+        $extension = pathinfo($file,PATHINFO_EXTENSION);
+        return md5(microtime(true)).".".$extension;
     }
 }

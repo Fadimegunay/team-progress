@@ -115,15 +115,20 @@
                             <li class="sidebar-user-panel">
                                 <div class="user-panel">
                                     <div class="row">
-                                            <div class="sidebar-userpic">
-                                                <img src="/assets/img/user.jpg" class="img-responsive" alt=""> </div>
+                                        <div class="sidebar-userpic">
+                                        @if(isset($authUser->profile_photo))
+                                            <img src="{{ asset('storage/uploads/users/'.$authUser->profile_photo) }}" class="img-responsive" alt="">
+                                        @else
+                                            <img src="{{ asset('assets/img/user.jpg')}}" class="img-responsive" alt=""> 
+                                        @endif
+                                        </div>
                                         </div>
                                         <div class="profile-usertitle">
                                             <div class="sidebar-userpic-name"> </div>
                                             <div class="profile-usertitle-job">
-                                                <?php /*if($_SESSION['user_type']==2){
-                                                    echo "Şube Yöneticisi";
-                                                }*/?>
+                                                @if(isset($authUser->team_id))
+                                                    {{$authUser->team->name}}
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="sidebar-userpic-btn">

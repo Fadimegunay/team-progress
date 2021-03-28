@@ -36,6 +36,7 @@
                                 <table class="table table-hover table-bordered mb-0" >
                                     <thead>
                                         <tr>
+                                            <th>Takım Adı</th>
                                             <th>Ad Soyad</th>
                                             <th>Mail Adresi</th>
                                             <th>İşlemler</th>
@@ -45,6 +46,7 @@
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                         @foreach($users as $user)
                                         <tr>
+                                            <td>{{$user->team->name}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>

@@ -28,7 +28,7 @@
                             </div>
                             {{ session()->forget('message') }}
                         @endif
-                        <form action="{{ route('users.update',['user' => $user->id]) }}" method="POST">
+                        <form action="{{ route('users.update',['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -89,6 +89,29 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                                        <label class="control-label" style="color:rgb(180, 180, 180);">Profil Yükle</label>
+                                        <div class="dropzone">
+                                            <div class="dz-message" style="margin: 25px;">
+                                                <div class="col-md-12" style="padding: 18px 5px 0 0;">
+                                                    <input type="file" class="upload" name="file" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if(isset($user->profile_photo)) 
+                                        <div class="col-lg-6 col-md-12 col-12 col-sm-12" > 
+                                            <label class="control-label col-md-12" style="color:rgb(180, 180, 180);">Şuanki Resim </label>
+                                            <!-- min-height: 100px; height: 100%; -->
+                                            <div class="blogThumb" style="min-height: 150px; display: flex; justify-content: center;">
+                                                <div class="thumb-center" style="max-width:100%; display: flex; flex-direction: column; justify-content: center;"><img src="{{ asset('storage/uploads/users/'.$authUser->profile_photo) }}" style="max-height: 200px; max-width: 200px;" /></div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-12 p-t-20"> 

@@ -34,6 +34,10 @@ class User extends Authenticatable
         return $this->hasMany(TaskUser::class, 'user_id', 'id');
     }
 
+    public function team() {
+	    return $this->hasOne(Team::class, 'id', 'team_id');
+    }
+
     public function canAccess($slug){
         $user_id = $this->id;
 
