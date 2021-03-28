@@ -46,5 +46,6 @@ class PermissionTableSeeder extends Seeder
 		$pagePermissions->register('task-new', TaskController::class, 'new', 'Görev Ekleme');
 		$pagePermissions->register('task-edit', TaskController::class, 'edit', 'Görev Güncelleme');
 		$pagePermissions->register('task-delete', TaskController::class, 'delete', 'Görev Silme');
+		$pagePermissions->register('task-show', TaskController::class, 'show', 'Görev Detay Görüntüleme');
     }
 }

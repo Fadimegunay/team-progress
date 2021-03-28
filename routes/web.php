@@ -58,6 +58,7 @@ Route::middleware(['usercheck'])->group(function () {
 		Route::get('create', 'TaskController@create')->name('create');
 		Route::post('', 'TaskController@store')->name('store');
 		Route::get('/edit/{task}', 'TaskController@edit')->name('edit');
+		Route::get('/show/{task}', 'TaskController@show')->name('show');
 		Route::put('{task}', 'TaskController@update')->name('update');
 		Route::delete('{task}', 'TaskController@delete')->name('delete');
 	});

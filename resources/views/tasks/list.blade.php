@@ -56,6 +56,9 @@
                                             <td>{{ date('d.m.Y',strtotime($item->created_at)) }}</td>
                                             <td>{{ date('d.m.Y',strtotime($item->end_date)) }} </td>
                                             <td>
+                                                @can('access', 'task-show')
+                                                <a class="btn btn-warning btn-xs" href="{{ route('tasks.show',['task' => $item->id]) }}"><i class="fa fa-eye"></i></a>
+                                                @endcan
                                                 @can('access', 'task-edit')
                                                 <a class="btn btn-primary btn-xs" href="{{ route('tasks.edit',['task' => $item->id]) }}"><i class="fa fa-pencil"></i></a>
                                                 @endcan

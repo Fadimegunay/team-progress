@@ -103,6 +103,17 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
     }
 
+    public function show(Task $task) {
+        if (Gate::denies('access', 'task-show')) {
+            return redirect()->route('home');
+        }
+
+        $data = [];
+        $data['task'] = $task;
+
+        return view('tasks.show',$data);
+    }
+
     public function edit(Task $task) {
         if (Gate::denies('access', 'task-edit')) {
             return redirect()->route('home');
