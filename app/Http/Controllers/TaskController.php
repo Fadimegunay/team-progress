@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\TaskUser;
 use App\Models\Team;
 use App\Models\User;
+
+use App\Mail\TaskInfo;
+use App\Mail\TaskUpdateInfo;
 
 class TaskController extends Controller
 {
@@ -85,6 +89,17 @@ class TaskController extends Controller
                 $newUser->save();
             }
         }
+        $taskUsers = User::select(['email', 'name'])->whereHas('taskUser', function($query) use ($newTask) {
+            $query->where('task_id', $newTask->id);
+        })->get();
+
+        foreach ($taskUsers as $taskUser) {
+            $user = new \stdClass();
+            $user->email = $taskUser->email;
+            $user->name = $taskUser->name;
+            Mail::to([$user])->send(new TaskInfo($taskUser, $newTask));
+        }
+
         return redirect()->route('tasks.index')->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
     }
 
@@ -134,6 +149,21 @@ class TaskController extends Controller
                 $newUser->save();
             }
         }
+        $taskUsers = User::select(['email', 'name'])->whereHas('taskUser', function($query) use ($task) {
+            $query->where('task_id', $task->id);
+        })->get();
+
+        foreach ($taskUsers as $taskUser) {
+            $user = new \stdClass();
+            $user->email = $taskUser->email;
+            $user->name = $taskUser->name;
+            Mail::to([$user])->send(new TaskUpdateInfo($taskUser, $task));
+        }
+        $user = new \stdClass();
+        $user->email = $task->user->email;
+        $user->name = $task->user->name;
+        Mail::to([$user])->send(new TaskUpdateInfo($task->user, $task));
+
         return redirect()->route('tasks.index')->with('message','işleminiz başarılı bir şekilde yapılmıştır.');
     }
 
