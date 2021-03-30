@@ -17,9 +17,7 @@
 	<link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- style -->
     <link rel="stylesheet" href="{{ asset('assets/css/pages/extra_pages.css') }}">
-	<!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}" /> 
-    @yield('styles')
+	@yield('styles')
 </head>
 <body>
     <div class="limiter">

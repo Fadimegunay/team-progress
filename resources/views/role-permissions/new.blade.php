@@ -10,7 +10,7 @@
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
                         <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ route('home') }}">Anasayfa</a>&nbsp;<i class="fa fa-angle-right"></i></li>
-                        <li><a class="parent-item" href="">Rol</a>&nbsp;<i class="fa fa-angle-right"></i></li>
+                        <li><a class="parent-item" href="{{ route('roles.index') }}">Rol</a>&nbsp;<i class="fa fa-angle-right"></i></li>
                         <li><a class="parent-item" href="">İzin</a>&nbsp;<i class="fa fa-angle-right"></i></li>
                         <li class="active">Oluştur</li>
                     </ol>

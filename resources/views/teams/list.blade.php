@@ -29,7 +29,7 @@
                             {{ session()->forget('message') }}
                         @endif
                         @can('access', 'team-new')
-                        <a class="btn btn-primary btn-outline btn-input" href="{{ route('teams.create') }}">Yeni Oluştur</a>
+                        <a class="btn btn-primary btn-outline btn-input" href="{{ route('teams.create') }}">YENİ Oluştur</a>
                         @endcan
                         <div style="margin-top: 15px;">
                             <div class="table-responsive">

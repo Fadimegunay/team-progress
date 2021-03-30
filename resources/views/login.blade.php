@@ -4,11 +4,8 @@
 <div class="wrap-login100">
     <form class="login100-form validate-form" action="{{ route('loginCheck') }}" method="POST">
         @csrf
-        <span class="login100-form-logo">
-            <i class="zmdi zmdi-flower"></i>
-        </span>
         <span class="login100-form-title p-b-34 p-t-27">
-            Giriş
+            GİRİŞ
         </span>
         @if(session()->has('message'))
             <div class="alert alert-danger">

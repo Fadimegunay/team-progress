@@ -37,8 +37,7 @@
     <!--select2-->
     <link href="{{ asset('assets/plugins/select2/css/select2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- favicon -->
-    <link rel="shortcut icon"  />
+
    <!-- script -->
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}" ></script>
     <script src="{{ asset('assets/plugins/popper/popper.min.js') }}" ></script>
@@ -53,7 +52,7 @@
             <div class="page-header-inner ">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="/dashboard">
+                    <a href="">
                     <img width="200" class="nicdark_width100_ipadpotr" src="" alt=""> </a>
                 </div>
                 <!-- logo end -->
@@ -84,11 +83,6 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default animated jello">
-                                <li>
-                                    <a href="">
-                                        <i class="icon-settings"></i> Ayarlar
-                                    </a>
-                                </li>
                                 <li class="divider"> </li>
                                 <li>
                                     <a href="{{ route('logout') }}">
@@ -132,14 +126,11 @@
                                             </div>
                                         </div>
                                         <div class="sidebar-userpic-btn">
-                                            <a class="tooltips" href="" data-placement="top" data-original-title="Kullanıcılar" title="Kullanıcı İşlmeleri">
+                                            <a class="tooltips" href="{{ route('users.index') }}" data-placement="top" data-original-title="Kullanıcılar" title="Kullanıcı İşlmeleri">
                                                 <i class="material-icons">person_outline</i>
                                             </a>
-                                            <a class="tooltips" href="" data-placement="top" data-original-title="Çıkış" title="Çıkış Yap">
+                                            <a class="tooltips" href="{{ route('logout') }}" data-placement="top" data-original-title="Çıkış" title="Çıkış Yap">
                                                 <i class="material-icons">input</i>
-                                            </a>
-                                            <a class="tooltips" href="" target="_blank" data-placement="top" data-original-title="Anasayfa" title="Siteye Git">
-                                                <i class="material-icons">web</i>
                                             </a>
                                         </div>
                                 </div>
@@ -147,14 +138,12 @@
 
                             <li class="nav-item start active">
                                 <a href="" class="nav-link nav-toggle">
-                                    <i class="material-icons">dashboard</i>
                                     <span class="title">Anasayfa</span>
                                 </a>
                             </li>
                             @can('access', ['users-list','users-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
                                     <span class="title">Kullanıcılar</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -179,7 +168,6 @@
                             @can('access' ,['team-list','team-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
                                     <span class="title">Takımlar</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -204,7 +192,6 @@
                             @can('access' ,['task-list','task-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
                                     <span class="title">Görevler</span>
                                     <span class="arrow"></span>
                                 </a>
@@ -229,7 +216,6 @@
                             @can('access' ,['role-list','role-new'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
-                                    <i class="material-icons">group</i>
                                     <span class="title">Roller</span>
                                     <span class="arrow"></span>
                                 </a>

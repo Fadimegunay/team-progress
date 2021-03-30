@@ -10,7 +10,7 @@
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ route('home') }}">Anasayfa</a>&nbsp;<i class="fa fa-angle-right"></i></li>
-                    <li><a class="parent-item" href="">Rol</a>&nbsp;<i class="fa fa-angle-right"></i></li>
+                    <li><a class="parent-item" href="{{ route('roles.index') }}">Rol</a>&nbsp;<i class="fa fa-angle-right"></i></li>
                     <li><a class="parent-item" href="">İzin</a>&nbsp;<i class="fa fa-angle-right"></i></li>
                     <li class="active">Listesi</li>
                 </ol>
@@ -30,7 +30,7 @@
                             {{ session()->forget('message') }}
                         @endif
                         @can('access', 'role_permission-new')
-                        <a class="btn btn-primary btn-outline btn-input" href="{{ route('role-permissions.new', ['id'=> $role->id]) }}">Yeni Oluştur</a>
+                        <a class="btn btn-primary btn-outline btn-input" href="{{ route('role-permissions.new', ['id'=> $role->id]) }}">YENİ Oluştur</a>
                         @endcan
                         <div style="margin-top: 15px;">
                             <div class="table-responsive">
