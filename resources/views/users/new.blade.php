@@ -30,6 +30,7 @@
                             @endif
                             <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @if($authUser->is_super_admin == 1)
                                 <div class="form-group">
                                     <div class="col-lg-12"> 
                                         <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
@@ -42,6 +43,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @else
+                                <input type="hidden" name="team" value="{{$authUser->team_id}}" />
+                                @endif
                                 <div class="form-group">
                                     <div class="col-lg-12"> 
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">

@@ -41,6 +41,7 @@ class PermissionTableSeeder extends Seeder
 
         $pagePermissions->register('role_permission-list', RolePermissionController::class, 'list', 'Rol İzin Listeleme');
 		$pagePermissions->register('role_permission-new', RolePermissionController::class, 'new', 'Rol İzin Ekleme');
+		$pagePermissions->register('role_permission-delete', RolePermissionController::class, 'delete', 'Rol İzin Silme');
 
         $pagePermissions->register('task-list', TaskController::class, 'list', 'Görev Listeleme');
 		$pagePermissions->register('task-new', TaskController::class, 'new', 'Görev Ekleme');

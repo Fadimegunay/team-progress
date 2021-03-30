@@ -15,6 +15,12 @@ Route::middleware(['userlogincheck'])->group(function () {
     Route::get('/login', 'LoginController@index')->name('login');
     Route::post('/login', 'LoginController@login')->name('loginCheck');
 });
+
+Route::get('/forgot/password', 'LoginController@forgotPassword')->name('forgot_password');
+Route::post('/forgot/password', 'LoginController@forgotPasswordCheck')->name('forgotPassword');
+Route::get('/change/password/{code}', 'LoginController@changePassword')->name('changePassword');
+Route::post('/change/password/{code}', 'LoginController@changePasswordAction')->name('changePasswordAction');
+
 Route::middleware(['usercheck'])->group(function () {
     Route::get('/logout', 'LoginController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home');
