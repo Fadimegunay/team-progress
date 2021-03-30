@@ -10,7 +10,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\TaskController;
-
+use App\Http\Controllers\MailSettingsController;
 use App\Libraries\PagePermissions;
 
 class PermissionTableSeeder extends Seeder
@@ -48,5 +48,7 @@ class PermissionTableSeeder extends Seeder
 		$pagePermissions->register('task-edit', TaskController::class, 'edit', 'Görev Güncelleme');
 		$pagePermissions->register('task-delete', TaskController::class, 'delete', 'Görev Silme');
 		$pagePermissions->register('task-show', TaskController::class, 'show', 'Görev Detay Görüntüleme');
+
+		$pagePermissions->register('mailSettings-edit', MailSettingsController::class, 'edit', 'Mail Ayarlarını Güncelleme');
     }
 }

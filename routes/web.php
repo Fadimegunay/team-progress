@@ -24,6 +24,7 @@ Route::post('/change/password/{code}', 'LoginController@changePasswordAction')->
 Route::middleware(['usercheck'])->group(function () {
     Route::get('/logout', 'LoginController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/', 'HomeController@index')->name('home');
 
     Route::prefix('teams')->name('teams.')->group(function () {
 		Route::get('', 'TeamController@index')->name('index');
@@ -72,5 +73,8 @@ Route::middleware(['usercheck'])->group(function () {
 	Route::prefix('ajax')->group(function () {
 			Route::get('/team/user', 'AjaxController@teamUser');
 	});
+
+	Route::get('mail_settings/edit', 'MailSettingController@edit')->name('mail_setting.edit');
+	Route::post('mail_settings/update', 'MailSettingController@update')->name('mail_setting.update');
 
 });

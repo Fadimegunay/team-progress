@@ -46,7 +46,11 @@
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                         @foreach($users as $user)
                                         <tr>
+                                            @if(isset($user->team_id))
                                             <td>{{$user->team->name}}</td>
+                                            @else
+                                            <td>-</td>
+                                            @endif
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>

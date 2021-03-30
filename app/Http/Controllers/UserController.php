@@ -39,7 +39,7 @@ class UserController extends Controller
         return view('users.new', $datas);
     }
 
-    public function store(Request $request){ // aynı grup ismini kaydettirme
+    public function store(Request $request){
         $user = new User();
         $user->team_id =  $request->input('team');
         $user->name = $request->input('name');

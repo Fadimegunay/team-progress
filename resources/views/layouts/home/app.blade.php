@@ -237,6 +237,23 @@
                                 </ul>
                             </li>
                             @endcan
+                            @can('access' ,['mailSettings-edit'])
+                            <li class="nav-item">
+                                <a href="#" class="nav-link nav-toggle">
+                                    <span class="title">Ayarlar</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    @can('access', 'mailSettings-edit')
+                                    <li class="nav-item">
+                                        <a href="{{ route('mail_setting.edit') }}" class="nav-link ">
+                                            <span class="title">Mail Ayarları</span>
+                                        </a>
+                                    </li>
+                                    @endcan
+                                </ul>
+                            </li>
+                            @endcan
                         </ul>
                     </div>
                 </div>
